@@ -5,11 +5,18 @@
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
+
+}
+.nav-position{
+  position:relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .app-content {
   flex: 1;
- 
   padding: 1.5rem;
   
 }
@@ -21,6 +28,10 @@
   padding: 1rem 1.5rem;
   background: rgba(15, 23, 42, 0.95);
   border-bottom: 1px solid rgba(255, 255, 255, 0.187);
+}
+.navbar-brand{
+    color:white;
+    text-decoration:none;
 }
 
 .navbar-right {
@@ -64,6 +75,7 @@
   width: 230px;
   /* padding: 1.5rem 1rem; */
   background: rgba(255, 255, 255, 0.06);
+  background: linear-gradient(135deg, #0f172a,#1b2642, #293c69);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 

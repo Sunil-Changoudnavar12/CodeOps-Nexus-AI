@@ -1,0 +1,136 @@
+
+.login-page {
+    min-height: calc(100vh - 100px);
+    width:auto;
+    background: linear-gradient(145deg, #1f2937, #111827);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    align-items: center;
+}
+
+.login-box:hover {
+    box-shadow: 0px 10px 30px #1b294a;
+}
+
+.login-box {
+    height: auto;
+    width: 100%;
+    max-width: 450px;
+    border: none;
+    border-radius: 10px;
+  background: linear-gradient(135deg, #1a2746, #111929);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    /* padding-bottom: 30px; */
+    animation: slideIn 0.3s ease;
+}
+
+
+.login-label {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #ffffff;
+    font-size: 24px;
+    /* padding: 40px 20px 20px; */
+}
+.login-label h1 {
+    font-size: 30px;
+    color: rgb(170, 170, 170);
+    margin:5px;
+    margin-top:25px;
+
+}
+
+.login-label p{
+    font-size: 20px;
+    color: rgb(214, 211, 211);
+    margin-top:5px;
+    font-weight: 100px;
+}
+
+p {
+    font-size: 12px;
+    color: rgb(214, 211, 211);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.log-info {
+    width: 100%;
+    padding: 0px 40px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    
+}
+
+.log-info h1 {
+    font-size: 18px;
+    text-transform:capitalize;
+    letter-spacing: 1px;
+    display: flex;
+    font-weight:normal;
+    margin:0px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+    color: rgb(170, 170, 170);
+}
+
+.log-inp {
+    height: 50px;
+    width: 75%;
+    background-color: rgb(46, 47, 52);
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    padding: 0 15px;
+    display: flex;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+}
+
+.log-inp:hover {
+    box-shadow: 0px 0px 10px rgba(104, 147, 248, 0.5);
+}
+
+.log-inp:focus {
+    outline: none;
+    border-color: #577cf4;
+    box-shadow: 0px 0px 10px rgba(104, 147, 248, 0.5);
+}
+
+.btn {
+    height: 50px;
+    width: 75%;
+    border-radius: 8px;
+    border: none;
+    background-color: rgb(78, 78, 237);
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    margin-left: 20px;
+    margin-top: 60px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: rgb(60, 60, 220);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.pp {
+    margin-left: 0px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
