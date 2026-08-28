@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Login from "../pages/login";
 import SignUp from "../pages/SignUp";
 import Overview from "../pages/Overview";
@@ -11,6 +12,23 @@ import Repositories from "../pages/Repositories";
 import Security from "../pages/Security";
 import Settings from "../pages/Settings";
 import Layout from "../components";
+import { isAuthenticated } from "../api/auth";
+
+function ProtectedRoute({ children }) {
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+}
+
+function DashboardPage({ children }) {
+  return (
+    <ProtectedRoute>
+      <Layout>{children}</Layout>
+    </ProtectedRoute>
+  );
+}
 
 function Approute() {
   return (
@@ -18,68 +36,79 @@ function Approute() {
       {/* Full page auth routes */}
       <Route path="/login" element={<Login />} />
       <Route path="/SignUp" element={<SignUp />} />
+      <Route path="/signup" element={<SignUp />} />
 
       {/* Dashboard routes with sidebar + topbar */}
       <Route
         path="/"
         element={
-            <Layout>
-              <Overview />
-            </Layout>
+          <DashboardPage>
+            <Overview />
+          </DashboardPage>
         }
       />
 
       <Route
         path="/overview"
         element={
-            <Layout>
-              <Overview />
-            </Layout>
+          <DashboardPage>
+            <Overview />
+          </DashboardPage>
         }
       />
 
       <Route
+        path="/dashboard"
+        element={
+          <DashboardPage>
+            <Overview />
+          </DashboardPage>
+        }
+      />
+
+
+      <Route
         path="/issues"
         element={
-            <Layout>
-              <Issues />
-            </Layout>
+          <DashboardPage>
+            <Issues />
+          </DashboardPage>
         }
       />
 
       <Route
         path="/code-review"
         element={
-            <Layout>
-              <CodeReview />
-            </Layout>
+          <DashboardPage>
+            <CodeReview />
+          </DashboardPage>
         }
       />
 
       <Route
         path="/analytics"
         element={
-            <Layout>
-              <Analytics />
-            </Layout>
+          <DashboardPage>
+            <Analytics />
+          </DashboardPage>
         }
       />
 
       <Route
         path="/cicd-pipeline"
         element={
-            <Layout>
-              <CICD_Pipeline />
-            </Layout>
+          <DashboardPage>
+            <CICD_Pipeline />
+          </DashboardPage>
         }
       />
 
       <Route
         path="/deployments"
         element={
-            <Layout>
-              <Deployments />
-            </Layout>
+          <DashboardPage>
+            <Deployments />
+          </DashboardPage>
 
         }
       />
@@ -87,9 +116,9 @@ function Approute() {
       <Route
         path="/repositories"
         element={
-            <Layout>
-              <Repositories />
-            </Layout>
+          <DashboardPage>
+            <Repositories />
+          </DashboardPage>
 
         }
       />
@@ -97,18 +126,18 @@ function Approute() {
       <Route
         path="/security"
         element={
-            <Layout>
-              <Security />
-            </Layout>
+          <DashboardPage>
+            <Security />
+          </DashboardPage>
         }
       />
 
       <Route
         path="/settings"
         element={
-            <Layout>
-              <Settings />
-            </Layout>
+          <DashboardPage>
+            <Settings />
+          </DashboardPage>
         }
       />
     </Routes>
@@ -116,3 +145,4 @@ function Approute() {
 }
 
 export default Approute;
+

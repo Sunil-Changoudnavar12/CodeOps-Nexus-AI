@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function Topbar() {
   return (
     <nav className="navbar">
-      <Link to="/Overview" className="navbar-brand">
+      <Link to="/overview" className="navbar-brand">
         <h2>CodeOps Nexus AI</h2>
       </Link>
 

@@ -5,13 +5,11 @@ import Sidebar from './layout/Sidebar'
 function Layout({ children }) {
   return (
     <div className="app">
-      <nav-position>  
-             <Topbar />
-      </nav-position>
+      <div className="nav-position">
+        <Topbar />
+      </div>
       <div className="app-shell">
         <Sidebar />
-        {/* <Login /> */}
-
         <main className="app-content" role="main">
           {children}
         </main>

@@ -1,17 +1,14 @@
 .app {
-  height:100%;
-  background: linear-gradient(135deg, #0f172a, #111827);
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b1122, #111827);
   color: white;
   display: flex;
   flex-direction: column;
-  font-family: Arial, sans-serif;
-
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
-.nav-position{
-  position:relative;
+.nav-position {
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
   z-index: 1000;
 }
 
@@ -41,12 +38,11 @@
 }
 
 .navbar input{
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  border: none;
-  width: 200px;
-  margin-right: 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  width: 220px;
+  background: rgba(255, 255, 255, 0.08);
   color: white;
   font-size: 14px;
 }
@@ -121,10 +117,96 @@
 
 .page-card {
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
   padding: 2rem;
-  min-width: 320px;
+  min-width: 280px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+}
+
+.dashboard-page {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.dashboard-hero {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.dashboard-hero h1 {
+  font-size: clamp(2.4rem, 3vw, 3.6rem);
+  margin: 0.25rem 0 1rem;
+  line-height: 1.05;
+}
+
+.dashboard-hero .eyebrow {
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.hero-copy {
+  max-width: 540px;
+  color: #cbd5e1;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 1rem 1.6rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #6d28d9, #2563eb);
+  color: white;
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.metric-card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+}
+
+.metric-card p {
+  color: #cbd5e1;
+  margin: 0 0 1rem;
+}
+
+.metric-card strong {
+  font-size: 1.5rem;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .dashboard-hero {
+    grid-template-columns: 1fr;
+  }
 }
 
 .page-card h1 {

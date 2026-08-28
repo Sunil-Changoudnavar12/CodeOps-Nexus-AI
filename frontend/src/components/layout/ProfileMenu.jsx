@@ -1,12 +1,32 @@
 import "./ProfileMenu.css";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuthSession, isAuthenticated, logout } from "../../api/auth";
 
 function ProfileMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const [session, setSession] = useState(getAuthSession());
+  const navigate = useNavigate();
 
-  // For now false because login system is not ready
-  const isLoggedIn = false;
+  const isLoggedIn = isAuthenticated();
+
+  useEffect(() => {
+    const syncSession = () => setSession(getAuthSession());
+
+    window.addEventListener("auth-change", syncSession);
+    window.addEventListener("storage", syncSession);
+
+    return () => {
+      window.removeEventListener("auth-change", syncSession);
+      window.removeEventListener("storage", syncSession);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    setIsOpen(false);
+    navigate("/login");
+  };
 
   return (
     <div className="profile-menu">
@@ -36,7 +56,7 @@ function ProfileMenu() {
             </>
           ) : (
             <>
-              <h4>My Profile</h4>
+              <h4>{session?.user?.username || "My Profile"}</h4>
 
               <Link to="/profile" className="popup-link">
                 View Profile
@@ -50,7 +70,9 @@ function ProfileMenu() {
                 About
               </Link>
 
-              <button className="logout-btn">Logout</button>
+              <button className="logout-btn" type="button" onClick={handleLogout}>
+                Logout
+              </button>
             </>
           )}
         </div>
