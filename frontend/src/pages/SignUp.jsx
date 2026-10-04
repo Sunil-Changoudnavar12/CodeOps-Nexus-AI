@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Topbar from "../components/layout/Topbar";
 import { saveAuthSession, signup } from "../api/auth";
-import "./login.css";
+import "../pages/styles/login.css";
 
 function SignUp() {
   const navigate = useNavigate();

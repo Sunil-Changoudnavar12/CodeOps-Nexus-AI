@@ -1,21 +1,64 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function Sidebar() {
     return (
         <aside className="sidebar">
-
-
             <ul>
-        
-                <li class="sidebar-item"><Link to="/">📊Overview</Link></li>
-                <li class="sidebar-item"><Link to="/code-review">📝 Code Review</Link></li>
-                <li class="sidebar-item"><Link to="/cicd-pipeline">🔄 CI/CD Pipeline</Link></li>
-                <li class="sidebar-item"><Link to="/issues">🕵️‍♂️ Issues</Link></li>
-                <li class="sidebar-item"><Link to="/deployments">🚀 Deployments</Link></li>
-                <li class="sidebar-item"><Link to="/analytics">📊 Analytics</Link></li>
-                <li class="sidebar-item"><Link to="/security">🔒 Security</Link></li>
-                <li class="sidebar-item"><Link to="/repositories">📁 Repositories</Link></li>
-                <li class="sidebar-item"><Link to="/settings">⚙️ Settings</Link></li>
+
+                <li className="sidebar-item">
+                    <NavLink to="/" end>
+                        📊 Overview
+                    </NavLink>
+                </li>
+
+                <li className="sidebar-item">
+                    <NavLink to="/code-review">
+                        📝 Code Review
+                    </NavLink>
+                </li>
+
+                <li className="sidebar-item">
+                    <NavLink to="/cicd-pipeline">
+                        🔄 CI/CD Pipeline
+                    </NavLink>
+                </li>
+
+                <li className="sidebar-item">
+                    <NavLink to="/issues">
+                        🕵️‍♂️ Issues
+                    </NavLink>
+                </li>
+
+                <li className="sidebar-item">
+                    <NavLink to="/deployments">
+                        🚀 Deployments
+                    </NavLink>
+                </li>
+
+                <li className="sidebar-item">
+                    <NavLink to="/analytics">
+                        📊 Analytics
+                    </NavLink>
+                </li>
+
+                <li className="sidebar-item">
+                    <NavLink to="/security">
+                        🔒 Security
+                    </NavLink>
+                </li>
+
+                <li className="sidebar-item">
+                    <NavLink to="/repositories">
+                        📁 Repositories
+                    </NavLink>
+                </li>
+
+                <li className="sidebar-item">
+                    <NavLink to="/settings">
+                        ⚙️ Settings
+                    </NavLink>
+                </li>
+
             </ul>
         </aside>
     )

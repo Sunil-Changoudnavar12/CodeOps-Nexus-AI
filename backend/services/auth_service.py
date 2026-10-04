@@ -2,7 +2,7 @@
 
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from sqlalchemy import or_
+from sqlalchemy import func, or_
 
 from backend.models.user_module import User
 from backend.utils.password_util import hash_password, verify_password
@@ -15,7 +15,11 @@ def signup_user(data, db: Session):
             detail="Passwords do not match"
         )
 
-    existing_user = db.query(User).filter(User.email == data.email).first()
+    username = data.username.strip()
+    email = str(data.email).strip().lower()
+    existing_user = db.query(User).filter(
+        or_(func.lower(User.email) == email, func.lower(User.username) == username.lower())
+    ).first()
 
     if existing_user:
         raise HTTPException(
@@ -24,8 +28,8 @@ def signup_user(data, db: Session):
         )
 
     new_user = User(
-        username=data.username,
-        email=data.email,
+        username=username,
+        email=email,
         password_hash=hash_password(data.password),
         role="user",
     )
@@ -54,8 +58,8 @@ def signup_user(data, db: Session):
 def login_user(data, db: Session):
     user = db.query(User).filter(
         or_(
-            User.username == data.login_id,
-            User.email == data.login_id
+            func.lower(User.username) == data.login_id.strip().lower(),
+            func.lower(User.email) == data.login_id.strip().lower()
         )
     ).first()
 

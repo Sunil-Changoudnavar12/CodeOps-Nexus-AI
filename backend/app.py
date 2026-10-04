@@ -1,7 +1,7 @@
 # backend/app.py
 from pathlib import Path
 import sys
-from fastapi.middleware.cors import CORSMiddleware
+
 BASE_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = BASE_DIR.parent
 if str(PROJECT_ROOT) not in sys.path:

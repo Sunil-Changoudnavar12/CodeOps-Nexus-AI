@@ -1,8 +1,10 @@
 
-import "./CodeReview.css";
-
+import "../pages/styles/CodeReview.css";
+import HeaderSection from "../components/code-review/HeaderSection";
 function CodeReview() {
   return (
+    <>
+     <HeaderSection />
     <div className="code-review-page">
 
       <div className="review-grid">
@@ -74,6 +76,7 @@ function CodeReview() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
