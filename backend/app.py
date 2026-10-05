@@ -13,6 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from backend.database import Base, engine
 from backend.routes import auth_router
+from backend.routes.code_review import router as code_review_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -37,6 +38,12 @@ app.include_router(
     auth_router,
     prefix="/api/auth",
     tags=["Auth"]
+)
+
+app.include_router(
+    code_review_router,
+    prefix="/api/code-review",
+    tags=["Code Editor"],
 )
 
 @app.get("/")

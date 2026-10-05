@@ -1,0 +1,238 @@
+.code-editor-container {
+    width: 100%;
+    height: auto;
+
+    background: #07101f;
+
+    border: 1px solid #1b2a43;
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   Editor Header
+========================= */
+
+.code-editor-header {
+    height: 45px;
+    flex: 0 0 45px;
+
+    background: #0a1425;
+
+    border-bottom: 1px solid #1b2a43;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 14px;
+}
+
+
+.file-info {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #d7e0ee;
+
+    font-size: 13px;
+}
+
+
+.python-icon {
+    font-size: 15px;
+}
+
+
+.file-name {
+    color: #dce6f5;
+}
+
+
+.editor-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.editor-icon-btn {
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    background: transparent;
+
+    color: #73839c;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+.editor-icon-btn:hover {
+    background: #14233a;
+    color: #ffffff;
+}
+
+
+/* =========================
+   Monaco Editor
+========================= */
+
+.editor-wrapper {
+    flex: 0 0 420px;
+    height: 420px;
+    min-height: 0;
+    overflow: hidden;
+
+    background: #07101f;
+}
+
+.editor-icon-btn:focus-visible, .analyze-code-btn:focus-visible {
+    outline: 2px solid #818cf8;
+    outline-offset: 2px;
+}
+
+
+/* =========================
+   Footer
+========================= */
+
+.code-editor-footer {
+    height: 48px;
+    flex: 0 0 48px;
+
+    background: #091426;
+
+    border-top: 1px solid #1b2a43;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 12px 0 16px;
+}
+
+
+.editor-status {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #73839c;
+
+    font-size: 12px;
+
+    text-transform: capitalize;
+}
+
+
+.analyze-code-btn {
+    height: 34px;
+
+    padding: 0 16px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #3b3df5;
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.analyze-code-btn:hover {
+    background: #4b4dfd;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 15px rgba(59, 61, 245, 0.25);
+}
+
+.analyze-code-btn:disabled {
+    opacity: .7;
+    cursor: wait;
+    transform: none;
+    box-shadow: none;
+}
+
+.editor-response {
+    display: grid;
+    gap: 6px;
+    padding: 12px 16px;
+    border-top: 1px solid #1b2a43;
+    font-size: 13px;
+}
+
+.editor-response-success { background: #0a1b1b; color: #a7f3d0; }
+.editor-response-error { background: #26151a; color: #fecaca; }
+.editor-response span { color: #aab6d3; }
+.editor-response details { color: #cbd5e1; }
+.editor-response summary { width: fit-content; cursor: pointer; }
+.editor-response pre { max-height: 180px; overflow: auto; margin: 8px 0 0; padding: 10px; background: #07101f; border-radius: 6px; color: #dce6f5; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+
+.analyze-code-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   Scrollbar
+========================= */
+
+.code-editor-container ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+
+.code-editor-container ::-webkit-scrollbar-track {
+    background: #07101f;
+}
+
+
+.code-editor-container ::-webkit-scrollbar-thumb {
+    background: #263650;
+
+    border-radius: 10px;
+}
+
+
+.code-editor-container ::-webkit-scrollbar-thumb:hover {
+    background: #344968;
+}
+
+@media (max-width: 640px) {
+    .editor-wrapper { flex-basis: 55vh; height: 55vh; min-height: 300px; }
+    .code-editor-footer { gap: 8px; padding: 0 8px; }
+    .editor-status { gap: 5px; font-size: 10px; }
+    .analyze-code-btn { padding: 0 10px; white-space: nowrap; }
+}
