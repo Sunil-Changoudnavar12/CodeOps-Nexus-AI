@@ -8,9 +8,16 @@ from sqlalchemy.orm import Session
 
 from backend.database import get_db
 from backend.models.code_analysis import CodeAnalysis
+from backend.schemas.code_review import CodeReviewRequest, CodeReviewResponse
+from backend.services.code_review_service import review_code
 
 
 router = APIRouter()
+
+
+@router.post("", response_model=CodeReviewResponse)
+def create_code_review(request: CodeReviewRequest):
+    return review_code(request)
 
 
 class CodeAnalyzeRequest(BaseModel):

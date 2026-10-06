@@ -53,28 +53,28 @@ function CodeReview() {
                 <p className="review-panel-eyebrow">CODE REVIEW</p>
                 <h2>{analysis ? "Review results" : "Review findings"}</h2>
               </div>
-              {analysis && <div className="review-score"><strong>{analysis.quality_score}</strong><span>/100</span></div>}
+              {analysis && <div className="review-score"><strong>{analysis.score}</strong><span>/100</span></div>}
             </div>
             {!analysis ? (
               <div className="review-empty"><span aria-hidden="true">⌕</span><p>Run Analyze Code to check for common security risks and unfinished work.</p></div>
             ) : (
               <>
-                <p className="review-file-name">{analysis.filename} · {analysis.language}</p>
-                {analysis.findings.length === 0 ? (
-                  <div className="review-clean"><strong>No common issues found</strong><p>The backend checks found no matching issues in this file.</p></div>
+                <p className="review-file-name">{analysis.summary}</p>
+                {analysis.issues.length === 0 ? (
+                  <div className="review-clean"><strong>No issues found</strong><p>The code review did not identify any issues.</p></div>
                 ) : (
                   <div className="finding-list">
-                    {analysis.findings.map((finding, index) => (
-                      <article className={`finding-card severity-${finding.severity}`} key={`${finding.line_number}-${finding.title}-${index}`}>
-                        <div className="finding-title-row"><span className="finding-severity">{finding.severity}</span><button type="button" onClick={() => jumpToLine(finding.line_number)}>Line {finding.line_number}</button></div>
-                        <h3>{finding.title}</h3>
-                        <p>{finding.description}</p>
-                        <span className="finding-category">{finding.category.replaceAll("_", " ")}</span>
+                    {analysis.issues.map((issue, index) => (
+                      <article className={`finding-card severity-${issue.severity}`} key={`${issue.line}-${issue.category}-${index}`}>
+                        <div className="finding-title-row"><span className="finding-severity">{issue.severity}</span><button type="button" onClick={() => jumpToLine(issue.line)}>Line {issue.line}</button></div>
+                        <h3>{issue.message}</h3>
+                        <p>{issue.suggestion}</p>
+                        <span className="finding-category">{issue.category.replaceAll("_", " ")}</span>
                       </article>
                     ))}
                   </div>
                 )}
-                <p className="review-disclaimer">Pattern based checks only. This is not an AI or full security audit.</p>
+                <p className="review-disclaimer">Mock review results. Review the code and run project tests before merging.</p>
               </>
             )}
           </aside>

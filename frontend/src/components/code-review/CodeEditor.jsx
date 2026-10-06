@@ -2,7 +2,9 @@ import { useRef, useState } from "react";
 import Editor from "@monaco-editor/react";
 import "../styles/CodeEditor.css";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+const API_ORIGIN = new URL(
+    import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000",
+).origin;
 
 function CodeEditor({ language = "python", code, onCodeChange, fileName = "app.py", onAnalyze, onEditorMount }) {
     const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -20,10 +22,10 @@ function CodeEditor({ language = "python", code, onCodeChange, fileName = "app.p
         onAnalyze?.(null);
 
         try {
-            const result = await fetch(`${API_BASE_URL}/api/code-review/analyze`, {
+            const result = await fetch(`${API_ORIGIN}/api/code-review`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ code, language, filename: fileName }),
+                body: JSON.stringify({ code, language }),
             });
 
             const data = await result.json().catch(() => null);
@@ -31,7 +33,9 @@ function CodeEditor({ language = "python", code, onCodeChange, fileName = "app.p
                 const detail = typeof data?.detail === "string" ? data.detail : `Request failed (${result.status}).`;
                 throw new Error(detail);
             }
-            if (!data?.success) throw new Error("The backend returned an unsuccessful response.");
+            if (typeof data?.summary !== "string" || !Array.isArray(data.issues)) {
+                throw new Error("The backend returned an invalid code review response.");
+            }
 
             setResponse(data);
             onAnalyze?.(data);
@@ -102,8 +106,8 @@ function CodeEditor({ language = "python", code, onCodeChange, fileName = "app.p
             {error && <div className="editor-response editor-response-error" role="alert">{error}</div>}
             {response && (
                 <div className="editor-response editor-response-success" role="status">
-                    <strong>Analysis saved successfully</strong>
-                    <span>{response.filename} · {response.language} · Score {response.quality_score}/100 · {response.findings.length} finding{response.findings.length === 1 ? "" : "s"}</span>
+                    <strong>Code review complete</strong>
+                    <span>Score {response.score}/100 · {response.issues.length} issue{response.issues.length === 1 ? "" : "s"}</span>
                 </div>
             )}
         </section>
